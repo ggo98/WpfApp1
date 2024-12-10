@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 //using System.Windows.Shapes;
 using System.Xml;
 using System.Reflection;
+using ICSharpCode.AvalonEdit;
 
 namespace WpfApp1
 {
@@ -36,6 +37,8 @@ namespace WpfApp1
 
             // Apply the syntax highlighting to the editor
             texteditor_SQL.SyntaxHighlighting = highlightingDefinition;
+
+            CreateContextMenu();
         }
 
         private IHighlightingDefinition LoadHighlightingFromFile(string filePath)
@@ -60,8 +63,8 @@ namespace WpfApp1
         {
             MessageBox.Show("hello wpf");
 
-            this.FontSize = 80;
-            return;
+            //this.FontSize = 80;
+            //return;
 
 
             foreach (var control in FindVisualChildren<Control>(this))
@@ -94,6 +97,27 @@ namespace WpfApp1
                 // Replace the existing style in the resources with the new one
                 this.Resources["ControlStyle"] = newStyle;
             }
+        }
+
+        private void CreateContextMenu()
+        {
+            var contextMenu = new ContextMenu();
+
+            var cutMenuItem = new MenuItem { Header = "Cut", Command = ApplicationCommands.Cut };
+            var copyMenuItem = new MenuItem { Header = "Copy", Command = ApplicationCommands.Copy };
+            var pasteMenuItem = new MenuItem { Header = "Paste", Command = ApplicationCommands.Paste };
+            var deleteMenuItem = new MenuItem { Header = "Delete", Command = ApplicationCommands.Delete };
+            var selectAllMenuItem = new MenuItem { Header = "Select All", Command = ApplicationCommands.SelectAll };
+
+            contextMenu.Items.Add(cutMenuItem);
+            contextMenu.Items.Add(copyMenuItem);
+            contextMenu.Items.Add(pasteMenuItem);
+            contextMenu.Items.Add(new Separator());
+            contextMenu.Items.Add(deleteMenuItem);
+            contextMenu.Items.Add(new Separator());
+            contextMenu.Items.Add(selectAllMenuItem);
+
+            texteditor_SQL.ContextMenu = contextMenu;
         }
 
         public static IEnumerable<T> FindVisualChildren<T>(DependencyObject parent) where T : DependencyObject

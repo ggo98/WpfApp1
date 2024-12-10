@@ -29,7 +29,21 @@
 
         <!-- Content for the Top Row -->
         <Border Grid.Row="0" Background="LightGreen">
-            <avalonedit:TextEditor Style="{StaticResource ControlStyle}" x:Name="texteditor_SQL" Margin="0,10,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+            <avalonedit:TextEditor Style="{StaticResource ControlStyle}" x:Name="texteditor_SQL" Margin="0,10,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <!-- OK, fonctionne
+                <avalonedit:TextEditor.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Cut" Command="ApplicationCommands.Cut"/>
+                        <MenuItem Header="Copy" Command="ApplicationCommands.Copy"/>
+                        <MenuItem Header="Paste" Command="ApplicationCommands.Paste"/>
+                        <Separator/>
+                        <MenuItem Header="Delete" Command="ApplicationCommands.Delete"/>
+                        <Separator/>
+                        <MenuItem Header="Select All" Command="ApplicationCommands.SelectAll"/>
+                    </ContextMenu>
+                </avalonedit:TextEditor.ContextMenu>
+                -->
+            </avalonedit:TextEditor>
         </Border>
 
         <!-- Horizontal GridSplitter -->
